@@ -128,8 +128,10 @@ var COLORIS = [
     VIDEOS.forEach(function (v) {
       var d = document.createElement("div"); d.className = "vslot";
       var el = document.createElement("video");
+      el.muted = true; el.setAttribute("muted", "");   // obligatoire : sans ça, le navigateur bloque le démarrage automatique
+      el.autoplay = true; el.loop = true;
       el.src = v.src; if (v.poster) el.poster = v.poster;
-      el.controls = true; el.playsInline = true; el.preload = "metadata";
+      el.controls = true; el.playsInline = true; el.preload = "auto";
       if (v.titre) el.setAttribute("aria-label", v.titre);
       d.appendChild(el); vg.appendChild(d);
     });
@@ -137,6 +139,14 @@ var COLORIS = [
     for (var i = 0; i < EMPLACEMENTS_VIDEO; i++) {
       var s = document.createElement("div"); s.className = "vslot empty"; s.textContent = "Vidéo à venir"; vg.appendChild(s);
     }
+  }
+
+  // Lecture uniquement quand la vidéo est visible à l'écran
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.isIntersecting ? en.target.play().catch(function () { }) : en.target.pause(); });
+    }, { threshold: 0.4 });
+    [].forEach.call(document.querySelectorAll(".vslot video, .shop-video video"), function (v) { io.observe(v); });
   }
 
   // Grille des coloris
