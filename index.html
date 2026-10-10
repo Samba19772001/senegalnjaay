@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+  body {
+    margin: 0
+  }
+
+  img {
+    max-width: 100%
+  }
+
+  [hidden] {
+    display: none !important
+  }
+</style>
+<title>SenegalNdiaye</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&family=Unbounded:wght@400;600;700&display=swap"
+  rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<header>
+  <div class="topbar">
+    <nav class="nav" aria-label="Navigation principale">
+      <!-- LOGO : dépose ton logo original dans assets/images/logo.png (fond transparent de préférence). Il remplacera ce texte tout seul. -->
+      <a class="logo-slot" href="#" aria-label="SenegalNdiaye, accueil">
+        <img src="assets/images/logo.png" alt="SenegalNdiaye">
+        <span class="logo-text">Senegal<span>Ndiaye</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#coloris">Coloris</a>
+        <a href="#qualite">Qualité</a>
+        <a href="#photos">Photos</a>
+        <a href="#videos">Vidéos</a>
+        <a href="#histoire">Histoire</a>
+        <a class="btn small" href="#commander">Commander</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" aria-label="Présentation">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1>Affirme ton style avec nos t-shirts.</h1>
+      <p class="hero-lead">Fais ressortir ton amour du Sénégal avec une pièce unique : le motif SENEGAL Njaay, en 100 %
+        coton pur.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#commander">Commander</a>
+        <a class="btn ghost" href="#coloris">Voir les coloris</a>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="arch">
+        <video id="heroVideo" src="assets/videos/mia.mp4" poster="assets/images/mannequin-poster.jpg" autoplay muted
+          loop playsinline preload="auto"
+          aria-label="Présentation des t-shirts SENEGAL Njaay portés en plusieurs coloris"></video>
+      </div>
+      <span class="chip"><span class="flagdots" aria-hidden="true"><i></i><i></i><i></i></span>8 coloris</span>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="sec flush" id="coloris" aria-labelledby="t-coloris">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="t-coloris">Un motif, huit coloris</h2>
+        <p>Le même SENEGAL Njaay, sur le fond qui te ressemble. Choisis ta couleur, on prépare la suite sur WhatsApp.
+        </p>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="sec flush" id="qualite" aria-labelledby="t-qualite">
+    <div class="wrap quality">
+      <div class="panel">
+        <div class="shop-video">
+          <video src="assets/videos/boutique.mp4" poster="assets/images/boutique-poster.jpg" controls playsinline
+            preload="metadata"
+            aria-label="Les t-shirts SENEGAL Njaay noir, rouge, orange et marine en boutique"></video>
+        </div>
+      </div>
+      <div>
+        <div class="sec-head">
+          <h2 id="t-qualite">Fait pour être porté</h2>
+        </div>
+        <ul class="facts">
+          <li>
+            <h3>100 % coton pur</h3>
+            <p>Des t-shirts conçus entièrement en coton.</p>
+          </li>
+          <li>
+            <h3>Doux et respirant</h3>
+            <p>Un tissu agréable à porter, du matin au soir.</p>
+          </li>
+          <li>
+            <h3>Confort, qualité, durabilité</h3>
+            <p>Les trois réunis dans la même pièce.</p>
+          </li>
+          <li>
+            <h3>Plusieurs coloris</h3>
+            <p>Pour s'adapter à tous les styles et à toutes les envies.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOS : dépose tes images dans assets/images/ puis ajoute une ligne dans PHOTOS (fichier js/script.js).
+       Tant que la liste est vide, 3 emplacements « Photo à venir » restent affichés. -->
+  <section class="sec flush" id="photos" aria-labelledby="t-photos">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="t-photos">En photos</h2>
+      </div>
+      <div class="photos" id="photos-grid"></div>
+    </div>
+  </section>
+
+  <!-- VIDÉOS : dépose tes fichiers dans assets/videos/ puis ajoute une ligne dans VIDEOS (fichier js/script.js).
+       Tant que la liste est vide, 3 emplacements « Vidéo à venir » restent affichés. -->
+  <section class="sec flush" id="videos" aria-labelledby="t-videos">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="t-videos">En vidéo</h2>
+      </div>
+      <div class="videos" id="videos-grid"></div>
+    </div>
+  </section>
+
+  <section class="sec story" id="histoire" aria-labelledby="t-histoire">
+    <div class="wrap story-grid">
+      <h2 id="t-histoire">Le car rapide, sur ton t-shirt. <em>Njaay</em></h2>
+      <div class="story-text">
+        <p>Le motif met en scène le car rapide, le minibus coloré qui fait vivre les rues de Dakar, avec le mot SENEGAL
+          en grandes lettres rondes.</p>
+        <p>Njaay est l'écriture wolof de Ndiaye, le nom de la marque. Chaque t-shirt est une façon simple de porter le
+          Sénégal avec toi.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="commander" aria-labelledby="t-commander">
+    <div class="wrap order">
+      <figure class="preview">
+        <img id="previewImg" src="assets/images/noir.jpg" alt="T-shirt SENEGAL Njaay noir">
+        <figcaption><span class="dot" id="previewDot"></span><span id="previewName">Noir</span></figcaption>
+      </figure>
+      <div>
+        <div class="sec-head">
+          <h2 id="t-commander">Commande sur WhatsApp</h2>
+          <p>Choisis tes coloris et tes tailles, ajoute-les à ta commande, puis envoie le message préparé.</p>
+        </div>
+        <form id="orderForm" autocomplete="off">
+          <fieldset>
+            <legend>Coloris</legend>
+            <div class="choices" id="colorChoices" role="radiogroup" aria-label="Coloris"></div>
+          </fieldset>
+          <div class="row">
+            <div>
+              <label class="lbl" for="size">Taille</label>
+              <select id="size">
+                <option>S</option>
+                <option>M</option>
+                <option selected>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+              </select>
+            </div>
+            <div>
+              <label class="lbl" for="qty">Quantité</label>
+              <input id="qty" type="number" min="1" max="50" value="1" inputmode="numeric">
+            </div>
+          </div>
+          <button class="btn ghost" id="add" type="button">Ajouter à ma commande</button>
+          <div>
+            <span class="lbl" id="cartLabel">Ma commande</span>
+            <ul class="cart" id="cart" aria-labelledby="cartLabel"></ul>
+            <p class="cart-empty" id="cartEmpty">Ta commande est vide. Choisis un coloris et une taille, puis
+              ajoute-les. Tu peux ajouter autant de coloris que tu veux.</p>
+          </div>
+          <div class="row">
+            <div>
+              <label class="lbl" for="name">Ton prénom</label>
+              <input id="name" type="text" placeholder="Awa">
+            </div>
+            <div>
+              <label class="lbl" for="city">Ville</label>
+              <input id="city" type="text" placeholder="Dakar">
+            </div>
+          </div>
+          <div>
+            <span class="lbl">Ton message</span>
+            <div class="msg" id="msg" aria-live="polite"></div>
+          </div>
+          <div class="actions">
+            <a class="btn" id="wa" href="#commander" target="_blank" rel="noopener">Envoyer sur WhatsApp</a>
+            <button class="btn ghost" id="copy" type="button">Copier le message</button>
+          </div>
+          <p class="note">Le bouton ne s'ouvre pas ? Écris-nous au <b id="waNumber"></b> en collant le message.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo-slot" href="#" aria-label="SenegalNdiaye, haut de page">
+      <img src="assets/images/logo.png" alt="SenegalNdiaye">
+      <span class="logo-text">Senegal<span>Ndiaye</span></span>
+    </a>
+    <p>Fais ressortir ton amour du Sénégal.</p>
+    <p>© 2026 SenegalNdiaye</p>
+  </div>
+</footer>
+
+<!-- Visionneuse : s'ouvre quand on clique sur une photo de la section « En photos » -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo agrandie" hidden>
+  <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Fermer">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+      <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+    </svg>
+  </button>
+  <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Photo précédente">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+      <path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </svg>
+  </button>
+  <figure class="lb-fig">
+    <img id="lbImg" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Photo suivante">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+      <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </svg>
+  </button>
+</div>
+<script src="js/script.js"></script>
+
+</html>

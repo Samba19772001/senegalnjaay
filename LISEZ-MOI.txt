@@ -1,0 +1,39 @@
+SITE SENEGALNDIAYE
+
+STRUCTURE DU DOSSIER
+  index.html         la page (le contenu)
+  css/style.css      le design (couleurs, polices, mise en page)
+  js/script.js       le comportement (coloris, photos, vidéos, panier, message WhatsApp)
+  assets/images/     toutes les images (logo, photos des coloris, nouvelles photos)
+  assets/videos/     toutes les vidéos
+
+Ouvre index.html dans un navigateur pour voir le site. Pour le mettre en ligne (Netlify, etc.), envoie tout le dossier.
+
+1) LOGO
+   Le logo est déjà en place : assets/images/logo.png (fond transparent), affiché en haut à gauche et en bas de page.
+   Pour le changer, remplace ce fichier en gardant le même nom.
+
+2) AJOUTER DES PHOTOS (section « En photos »)
+   a. Mets l'image dans assets/images/  (ex. assets/images/photo-1.jpg)
+   b. Ouvre js/script.js, cherche  var PHOTOS = [
+   c. Ajoute une ligne entre les crochets :
+        { src: "assets/images/photo-1.jpg", alt: "Description de la photo" },
+   Les emplacements « Photo à venir » disparaissent dès qu'il y a au moins une photo.
+
+3) AJOUTER DES VIDÉOS (section « En vidéo »)
+   a. Mets le fichier dans assets/videos/  (ex. assets/videos/video-1.mp4)
+      Une image d'aperçu est facultative : assets/images/video-1.jpg
+   b. Ouvre js/script.js, cherche  var VIDEOS = [
+   c. Ajoute une ligne entre les crochets :
+        { src: "assets/videos/video-1.mp4", poster: "assets/images/video-1.jpg", titre: "Collection noire" },
+   Les emplacements « Vidéo à venir » disparaissent dès qu'il y a au moins une vidéo.
+   Format conseillé : MP4 vertical (9:16), moins de 10 Mo par vidéo.
+
+4) NOUVEAUX COLORIS
+   Dans js/script.js, une ligne de plus dans  var COLORIS = [  avec la photo carrée dans assets/images/.
+
+5) NUMÉRO WHATSAPP
+   Dans js/script.js, cherche  var WHATSAPP  (format 221XXXXXXXXX, sans + ni espaces).
+
+6) COULEURS ET POLICES
+   Dans css/style.css, tout en haut, le bloc  :root { ... }  contient les couleurs et les polices.
