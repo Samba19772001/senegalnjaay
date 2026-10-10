@@ -1,6 +1,6 @@
 /* ---- À modifier facilement ---- */
-var WHATSAPP = "221782921001";          // numéro WhatsApp, format international sans + ni espaces
-var WHATSAPP_AFFICHE = "+221 78 292 10 01";
+var WHATSAPP = "221788288812";          // numéro WhatsApp, format international sans + ni espaces
+var WHATSAPP_AFFICHE = "+221 78 828 88 12";
 
 // Tes nouvelles photos : dépose l'image dans assets/images/ puis ajoute une ligne, par exemple :
 //   { src: "assets/images/photo-1.jpg", alt: "Description de la photo" },
