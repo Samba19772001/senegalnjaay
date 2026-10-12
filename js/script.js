@@ -20,11 +20,11 @@ var EMPLACEMENTS_PHOTO = 3;             // nombre d'emplacements « Photo à ven
 //   { src: "assets/videos/video-1.mp4", poster: "assets/images/video-1.jpg", titre: "Collection noire" },
 // (poster est facultatif : une image de assets/images/ qui s'affiche avant la lecture)
 var VIDEOS = [
-  { src: "assets/videos/mia.mp4", titre: "Collection" },
-  { src: "assets/videos/mannequin.mp4", titre: "Collection" },
-  { src: "assets/videos/mia2.mp4", titre: "Collection" },
-  { src: "assets/videos/boutique.mp4", titre: "Collection" },
-  { src: "assets/videos/samba.mp4", titre: "Collection" },
+  { src: "assets/videos/mia.mp4", poster: "assets/images/mia-poster.webp", titre: "Collection" },
+  { src: "assets/videos/mannequin.mp4", poster: "assets/images/mannequin-poster.webp", titre: "Collection" },
+  { src: "assets/videos/mia2.mp4", poster: "assets/images/mia2-poster.webp", titre: "Collection" },
+  { src: "assets/videos/boutique.mp4", poster: "assets/images/boutique-poster.webp", titre: "Collection" },
+  { src: "assets/videos/samba.mp4", poster: "assets/images/samba-poster.webp", titre: "Collection" },
 
 
 
@@ -129,9 +129,9 @@ var COLORIS = [
       var d = document.createElement("div"); d.className = "vslot";
       var el = document.createElement("video");
       el.muted = true; el.setAttribute("muted", "");   // obligatoire : sans ça, le navigateur bloque le démarrage automatique
-      el.autoplay = true; el.loop = true;
+      el.loop = true;
       el.src = v.src; if (v.poster) el.poster = v.poster;
-      el.controls = true; el.playsInline = true; el.preload = "auto";
+      el.controls = true; el.playsInline = true; el.preload = "none";
       if (v.titre) el.setAttribute("aria-label", v.titre);
       d.appendChild(el); vg.appendChild(d);
     });
