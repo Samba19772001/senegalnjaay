@@ -1008,3 +1008,113 @@ footer {
     transition: none;
   }
 }
+
+
+/* Nouvelle page d'accueil avec photo de couverture */
+.hero-cover {
+  position: relative;
+  min-height: 680px;
+  min-height: min(780px, 85vh);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background: #0F1537;
+  color: #fff;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url("../assets/images/C.jpeg");
+  background-position: center 35%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1.01);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg,
+      rgba(5, 9, 25, .88) 0%,
+      rgba(5, 9, 25, .62) 48%,
+      rgba(5, 9, 25, .12) 100%);
+}
+
+.hero-content {
+  position: relative;
+  padding-block: 100px;
+  display: grid;
+  justify-items: start;
+  gap: 24px;
+}
+
+.hero-tag {
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  color: var(--yellow);
+}
+
+.hero-cover h1 {
+  max-width: 760px;
+  font-size: clamp(2.8rem, 7vw, 5.8rem);
+  line-height: 1.08;
+  color: #fff;
+}
+
+.hero-cover .hero-lead {
+  max-width: 520px;
+  color: rgba(255, 255, 255, .9);
+}
+
+.hero-cover .btn {
+  background: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+.hero-cover .btn:hover {
+  background: #fff;
+  color: var(--ink);
+}
+
+.hero-cover .btn.ghost {
+  background: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+.hero-cover .btn.ghost:hover {
+  background: #fff;
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .hero-cover {
+    min-height: 620px;
+    min-height: 78svh;
+  }
+
+  .hero-background {
+    background-position: center center;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(0deg,
+        rgba(5, 9, 25, .88) 0%,
+        rgba(5, 9, 25, .55) 65%,
+        rgba(5, 9, 25, .2) 100%);
+  }
+
+  .hero-content {
+    padding-block: 80px;
+  }
+
+  .hero-cover h1 {
+    font-size: clamp(2.5rem, 11vw, 4rem);
+  }
+}
