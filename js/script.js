@@ -5,11 +5,27 @@ var WHATSAPP_AFFICHE = "+221 78 828 88 12";
 // Tes nouvelles photos : dépose l'image dans assets/images/ puis ajoute une ligne, par exemple :
 //   { src: "assets/images/photo-1.jpg", alt: "Description de la photo" },
 var PHOTOS = [
-  { src: "assets/images/coumba.jpeg", alt: "coumba" },
-  { src: "assets/images/bae.jpeg", alt: "Description de la photo" },
-  { src: "assets/images/boy.jpeg", alt: "Description de la photo" },
-  { src: "assets/images/groupe.jpeg", alt: "Description de la photo" },
-  { src: "assets/images/vv.jpeg", alt: "Description de la photo" },
+
+  {
+    src: "assets/images/coumba.jpeg",
+    alt: "Modèle portant un t-shirt noir SENEGAL Njaay avec un motif de car rapide sénégalais."
+  },
+  {
+    src: "assets/images/bae.jpeg",
+    alt: "Modèle portant un t-shirt blanc SENEGAL Njaay avec un imprimé inspiré du Sénégal."
+  },
+  {
+    src: "assets/images/boy.jpeg",
+    alt: "Femme portant un t-shirt rouge SENEGAL Njaay."
+  },
+  {
+    src: "assets/images/groupe.jpeg",
+    alt: "Groupe de personnes portant des t-shirts SENEGAL Njaay."
+  },
+  {
+    src: "assets/images/vv.jpeg",
+    alt: "Homme portant un t-shirt orange SENEGAL Njaay."
+  }
 ];
 var EMPLACEMENTS_PHOTO = 3;             // nombre d'emplacements « Photo à venir » tant que PHOTOS est vide
 
@@ -17,10 +33,26 @@ var EMPLACEMENTS_PHOTO = 3;             // nombre d'emplacements « Photo à ven
 //   { src: "assets/videos/video-1.mp4", poster: "assets/images/video-1.jpg", titre: "Collection noire" },
 // (poster est facultatif : une image de assets/images/ qui s'affiche avant la lecture)
 var VIDEOS = [
-  { src: "assets/videos/mia.mp4", poster: "assets/images/mia-poster.webp", titre: "Collection noire" },
-  { src: "assets/videos/mannequin.mp4", poster: "assets/images/mannequin-poster.webp", titre: "Collection noire" },
-  { src: "assets/videos/mia2.mp4", poster: "assets/images/mia2-poster.webp", titre: "Collection noire" },
-  { src: "assets/videos/samba.mp4", poster: "assets/images/samba-poster.webp", titre: "Collection noire" },
+  {
+    src: "assets/videos/mia.mp4",
+    poster: "assets/images/mia-poster.webp",
+    titre: "Mia Guissé porte le t-shirt noir SENEGAL Njaay"
+  },
+  {
+    src: "assets/videos/mannequin.mp4",
+    poster: "assets/images/mannequin-poster.webp",
+    titre: "Présentation des t-shirts SENEGAL Njaay en plusieurs couleurs"
+  },
+  {
+    src: "assets/videos/mia2.mp4",
+    poster: "assets/images/mia2-poster.webp",
+    titre: "Mia Guissé présente les différentes couleurs des t-shirts SENEGAL Njaay"
+  },
+  {
+    src: "assets/videos/samba.mp4",
+    poster: "assets/images/samba-poster.webp",
+    titre: "Mia Guissé présente Samba Sall, créateur de la marque SENEGAL Njaay"
+  }
 ];
 var EMPLACEMENTS_VIDEO = 3;             // nombre d'emplacements « Vidéo à venir » tant que VIDEOS est vide
 
@@ -33,7 +65,7 @@ var DELAI_DEFILEMENT = 3500;            // millisecondes entre deux défilements
 var PRODUITS = [
   {
     id: "tshirt", nom: "T-shirt, Première collection", pluriel: "T-shirts, Première collection", img: "assets/images/produit-tshirt.jpg", prix: 9000,
-    texte: "Le classique SENEGAL Njaay, en 100 % coton pur .",
+    texte: "T-shirt SENEGAL Njaay en 100 % coton, avec un tissu épais de 240 à 280 GSM, doux, dense, respirant et résistant. Une pièce inspirée de la culture sénégalaise, disponible en plusieurs coloris et tailles.",
     tailles: ["S", "M", "L", "XL", "XXL"],
     coloris: [
       { id: "noir", nom: "Noir", hex: "#14161F" },
@@ -50,7 +82,7 @@ var PRODUITS = [
   },
   {
     id: "tshirt-arched", nom: "The Arched Lettering Tee", pluriel: "The Arched Lettering Tee, Deuxième collection", img: "assets/images/collection-arched-tee.jpeg", prix: 9000,
-    texte: "100 % coton, 240 à 280 GSM. Tissu épais, doux, dense, respirant et résistant.",
+    texte: "T-shirt The Arched Lettering Tee en 100 % coton, avec un tissu épais de 240 à 280 GSM, doux, dense, respirant et résistant. Une collection qui associe confort, qualité et identité sénégalaise.",
     tailles: ["S", "M", "L", "XL", "XXL"],
     coloris: [
       { id: "noir", nom: "Noir", hex: "#14161F" },
@@ -67,7 +99,7 @@ var PRODUITS = [
   },
   {
     id: "pull", nom: "Pull", pluriel: "Pulls", img: "assets/images/produit-pull.jpg", prix: 13000,
-    texte: "Des pulls à capuche de qualité exceptionnelle.",
+    texte: "Pull à capuche SENEGAL Njaay en 100 % coton. Une pièce confortable qui célèbre la culture et l'identité sénégalaises. Disponible en plusieurs coloris et tailles.",
     tailles: ["S", "M", "L", "XL", "XXL"],
     coloris: [
       { id: "noir", nom: "Noir", hex: "#14161F" },
@@ -84,7 +116,7 @@ var PRODUITS = [
   },
   {
     id: "sac", nom: "Sac", pluriel: "Sacs", img: "assets/images/produit-sac.jpg", prix: 5000,
-    texte: "Le Sénégal au bout des épaules.",
+    texte: "Sac en tissu de type tote bag SENEGAL Njaay, inspiré de la culture sénégalaise. Un accessoire pratique pour afficher son attachement au Sénégal au quotidien.",
     tailles: null,
     coloris: [
       { id: "noir", nom: "Noir", hex: "#14161F" },
