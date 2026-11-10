@@ -213,21 +213,40 @@ var PRODUITS = [
   });
 
   /* ---------- Produits (bande horizontale) ---------- */
-  var productItems = PRODUITS.map(function (p) { return { type: "image", src: p.img, label: p.pluriel }; });
+  /* ---------- Produits (bande horizontale) ---------- */
+  var productItems = PRODUITS.map(function (p) {
+    return { type: "image", src: p.img, label: p.pluriel };
+  });
+
+  var productPages = {
+    "tshirt": "t-shirt-premiere-collection.html",
+    "tshirt-arched": "arched-lettering-tee.html",
+    "pull": "pull.html",
+    "sac": "sac.html"
+  };
+
   var pt = $("produits-track");
+
   PRODUITS.forEach(function (p, i) {
     var a = document.createElement("article");
     a.className = "slide product";
+
     a.innerHTML =
-      '<button class="pimg" type="button" aria-label="Agrandir l\'affiche : ' + p.pluriel + '"><img loading="lazy" src="' + p.img + '" alt="Affiche ' + p.pluriel + ' SENEGAL Njaay"></button>' +
-      '<div class="pbody"><h3>' + p.pluriel + '</h3><p>' + p.texte + '</p><strong class="product-price">' + p.prix.toLocaleString('fr-FR') + ' FCFA</strong>' +
-      '<a class="btn small" href="#commander" data-produit="' + p.id + '">Commander</a></div>';
-    a.querySelector(".pimg").addEventListener("click", function (e) { openViewer(productItems, i, e.currentTarget); });
+      '<button class="pimg" type="button" aria-label="Agrandir l’affiche : ' + p.pluriel + '">' +
+      '<img loading="lazy" src="' + p.img + '" alt="Affiche ' + p.pluriel + ' SENEGAL Njaay">' +
+      '</button>' +
+      '<div class="pbody">' +
+      '<h3>' + p.pluriel + '</h3>' +
+      '<p>' + p.texte + '</p>' +
+      '<strong class="product-price">' + p.prix.toLocaleString("fr-FR") + ' FCFA</strong>' +
+      '<a class="btn small" href="' + productPages[p.id] + '">Découvrir le produit</a>' +
+      '</div>';
+
+    a.querySelector(".pimg").addEventListener("click", function (e) {
+      openViewer(productItems, i, e.currentTarget);
+    });
+
     pt.appendChild(a);
-  });
-  pt.addEventListener("click", function (e) {
-    var a = e.target.closest("a[data-produit]");
-    if (a) setProduct(a.getAttribute("data-produit"));
   });
 
   /* ---------- Photos (bande horizontale) ---------- */
