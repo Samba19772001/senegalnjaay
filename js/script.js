@@ -32,7 +32,7 @@ var DELAI_DEFILEMENT = 3500;            // millisecondes entre deux défilements
 // tailles: null = pas de taille (ex. les sacs).
 var PRODUITS = [
   {
-    id: "tshirt", nom: "T-shirt", pluriel: "T-shirts", img: "assets/images/produit-tshirt.jpg",
+    id: "tshirt", nom: "T-shirt, Première collection", pluriel: "T-shirts, Première collection", img: "assets/images/produit-tshirt.jpg", prix: 9000,
     texte: "Le classique SENEGAL Njaay, en 100 % coton pur .",
     tailles: ["S", "M", "L", "XL", "XXL"],
     coloris: [
@@ -44,12 +44,29 @@ var PRODUITS = [
       { id: "rose", nom: "Rose délavé", hex: "#E5679B" },
       { id: "charbon", nom: "Gris charbon", hex: "#5A5757" },
       { id: "bleugris", nom: "Bleu-gris délavé", hex: "#7D86A6" },
-
+      { id: "orange", nom: "Orange", hex: "#D2762F" },
       { id: "marron", nom: "Marron", hex: "#8B6652" }
     ]
   },
   {
-    id: "pull", nom: "Pull", pluriel: "Pulls", img: "assets/images/produit-pull.jpg",
+    id: "tshirt-arched", nom: "The Arched Lettering Tee", pluriel: "The Arched Lettering Tee, Deuxième collection", img: "assets/images/collection-arched-tee.jpeg", prix: 9000,
+    texte: "100 % coton, 240 à 280 GSM. Tissu épais, doux, dense, respirant et résistant.",
+    tailles: ["S", "M", "L", "XL", "XXL"],
+    coloris: [
+      { id: "noir", nom: "Noir", hex: "#14161F" },
+      { id: "blanc", nom: "Blanc", hex: "#FEFEFF" },
+      { id: "vert", nom: "Vert", hex: "#61E777" },
+      { id: "rouge", nom: "Rouge", hex: "#B4232C" },
+      { id: "marine", nom: "Bleu marine", hex: "#1E2A5E" },
+      { id: "rose", nom: "Rose délavé", hex: "#E5679B" },
+      { id: "charbon", nom: "Gris charbon", hex: "#5A5757" },
+      { id: "bleugris", nom: "Bleu-gris délavé", hex: "#7D86A6" },
+      { id: "orange", nom: "Orange", hex: "#D2762F" },
+      { id: "marron", nom: "Marron", hex: "#8B6652" }
+    ]
+  },
+  {
+    id: "pull", nom: "Pull", pluriel: "Pulls", img: "assets/images/produit-pull.jpg", prix: 13000,
     texte: "Des pulls à capuche de qualité exceptionnelle.",
     tailles: ["S", "M", "L", "XL", "XXL"],
     coloris: [
@@ -61,12 +78,12 @@ var PRODUITS = [
       { id: "rose", nom: "Rose délavé", hex: "#E5679B" },
       { id: "charbon", nom: "Gris charbon", hex: "#5A5757" },
       { id: "bleugris", nom: "Bleu-gris délavé", hex: "#7D86A6" },
-
+      { id: "orange", nom: "Orange", hex: "#D2762F" },
       { id: "marron", nom: "Marron", hex: "#8B6652" }
     ]
   },
   {
-    id: "sac", nom: "Sac", pluriel: "Sacs", img: "assets/images/produit-sac.jpg",
+    id: "sac", nom: "Sac", pluriel: "Sacs", img: "assets/images/produit-sac.jpg", prix: 5000,
     texte: "Le Sénégal au bout des épaules.",
     tailles: null,
     coloris: [
@@ -79,7 +96,7 @@ var PRODUITS = [
       { id: "rose", nom: "Rose délavé", hex: "#E5679B" },
       { id: "charbon", nom: "Gris charbon", hex: "#5A5757" },
       { id: "bleugris", nom: "Bleu-gris délavé", hex: "#7D86A6" },
-
+      { id: "orange", nom: "Orange", hex: "#D2762F" },
       { id: "marron", nom: "Marron", hex: "#8B6652" }
     ]
   }
@@ -171,7 +188,7 @@ var PRODUITS = [
     a.className = "slide product";
     a.innerHTML =
       '<button class="pimg" type="button" aria-label="Agrandir l\'affiche : ' + p.pluriel + '"><img loading="lazy" src="' + p.img + '" alt="Affiche ' + p.pluriel + ' SENEGAL Njaay"></button>' +
-      '<div class="pbody"><h3>' + p.pluriel + '</h3><p>' + p.texte + '</p>' +
+      '<div class="pbody"><h3>' + p.pluriel + '</h3><p>' + p.texte + '</p><strong class="product-price">' + p.prix.toLocaleString('fr-FR') + ' FCFA</strong>' +
       '<a class="btn small" href="#commander" data-produit="' + p.id + '">Commander</a></div>';
     a.querySelector(".pimg").addEventListener("click", function (e) { openViewer(productItems, i, e.currentTarget); });
     pt.appendChild(a);
@@ -304,7 +321,7 @@ var PRODUITS = [
   /* ---------- Commande : produit, coloris, taille, panier ---------- */
   var curP = PRODUITS[0].id, curC = PRODUITS[0].coloris[0].id;
   var customColor = "";
-  var cart = [];
+  var cart = [];   // { pid, cid, size, qty, customColor }
 
   var pbox = $("prodChoices"), cbox = $("colorChoices");
   PRODUITS.forEach(function (p) {
@@ -318,10 +335,8 @@ var PRODUITS = [
   cbox.addEventListener("change", function (e) { setColor(e.target.value); });
   $("customColor").addEventListener("input", function () {
     customColor = this.value.trim();
-
-    if (curC === "autre") {
-      showPreview();
-    }
+    showPreview();
+    update();
   });
 
   function renderColors() {
@@ -335,19 +350,14 @@ var PRODUITS = [
       lab.innerHTML = '<span class="dot" style="background:' + c.hex + '"></span>' + c.nom;
       cbox.appendChild(inp); cbox.appendChild(lab);
     });
-    // Option autre couleur
+
+    // Option permettant au client de saisir une couleur absente de la liste.
     var other = document.createElement("input");
-    other.type = "radio";
-    other.name = "color";
-    other.id = "c-autre";
-    other.value = "autre";
-
+    other.type = "radio"; other.name = "color"; other.id = "c-autre"; other.value = "autre";
     var otherLabel = document.createElement("label");
-    otherLabel.htmlFor = "c-autre";
+    otherLabel.htmlFor = other.id;
     otherLabel.textContent = "Autre couleur";
-
-    cbox.appendChild(other);
-    cbox.appendChild(otherLabel);
+    cbox.appendChild(other); cbox.appendChild(otherLabel);
   }
   function renderSizes() {
     var p = prod(curP), sel = $("size");
@@ -358,78 +368,54 @@ var PRODUITS = [
   }
   function showPreview() {
     var p = prod(curP), im = $("previewImg");
-
     if (curC === "autre") {
       im.src = p.img;
       im.classList.add("poster");
       im.alt = p.nom + " SENEGAL Njaay, couleur personnalisée";
       $("previewDot").style.background = "#888888";
-      $("previewName").textContent =
-        p.nom + " " + (customColor || "couleur personnalisée");
+      $("previewName").textContent = p.nom + " — " + (customColor || "couleur personnalisée") + " · " + p.prix.toLocaleString("fr-FR") + " FCFA";
       return;
     }
-
     var c = colorOf(p, curC);
     im.src = imgOf(p, c);
     im.classList.toggle("poster", !c.img);
     im.alt = p.nom + " SENEGAL Njaay " + c.nom.toLowerCase();
     $("previewDot").style.background = c.hex;
-    $("previewName").textContent = p.nom + " " + c.nom.toLowerCase();
+    $("previewName").textContent = p.nom + " " + c.nom.toLowerCase() + " · " + p.prix.toLocaleString("fr-FR") + " FCFA";
   }
   function setProduct(pid) {
     curP = prod(pid).id;
     $("p-" + curP).checked = true;
     curC = prod(curP).coloris[0].id;
-
     customColor = "";
     $("customColor").value = "";
     $("customColorWrap").hidden = true;
-
-    renderColors();
-    renderSizes();
+    renderColors(); renderSizes();
     $("c-" + curC).checked = true;
     showPreview();
   }
   function setColor(cid) {
     curC = cid === "autre" ? "autre" : colorOf(prod(curP), cid).id;
-
     $("customColorWrap").hidden = curC !== "autre";
-
     if (curC !== "autre") {
       customColor = "";
       $("customColor").value = "";
     }
-
-    var el = $("c-" + curC);
-    if (el) el.checked = true;
-
+    var el = $("c-" + curC); if (el) el.checked = true;
     showPreview();
     update();
-
     if (curC === "autre") $("customColor").focus();
   }
 
   function qtyValue() { return Math.max(1, Math.min(50, parseInt($("qty").value, 10) || 1)); }
   function label(it) {
     var p = prod(it.pid);
-
     if (it.cid === "autre") {
       var custom = it.customColor || "couleur à préciser";
-
-      return {
-        p: p,
-        c: { nom: custom, hex: "#888888" },
-        detail: custom + (it.size ? ", taille " + it.size : "")
-      };
+      return { p: p, c: { nom: custom, hex: "#888888" }, detail: custom + (it.size ? ", taille " + it.size : "") };
     }
-
     var c = colorOf(p, it.cid);
-
-    return {
-      p: p,
-      c: c,
-      detail: c.nom + (it.size ? ", taille " + it.size : "")
-    };
+    return { p: p, c: c, detail: c.nom + (it.size ? ", taille " + it.size : "") };
   }
 
   function renderCart() {
@@ -438,70 +424,31 @@ var PRODUITS = [
     $("cartEmpty").hidden = cart.length > 0;
     cart.forEach(function (it, i) {
       var l = label(it), li = document.createElement("li");
-      li.innerHTML = '<img src="' + imgOf(l.p, l.c) + '" alt=""><span class="what">' + it.qty + ' × ' + l.p.nom + '<small>' + l.detail + '</small></span>' +
+      li.innerHTML = '<img src="' + imgOf(l.p, l.c) + '" alt=""><span class="what">' + it.qty + ' × ' + l.p.nom + '<small>' + l.detail + '</small><small>' + l.p.prix.toLocaleString("fr-FR") + ' FCFA / unité · Sous-total : ' + (it.qty * l.p.prix).toLocaleString("fr-FR") + ' FCFA</small></span>' +
         '<button type="button" data-i="' + i + '" aria-label="Retirer ' + l.p.nom + ', ' + l.detail + '">Retirer</button>';
       ul.appendChild(li);
     });
   }
 
   $("add").addEventListener("click", function () {
-    $("add").addEventListener("click", function () {
-      var p = prod(curP);
-      var size = p.tailles ? $("size").value : "";
-      var qty = qtyValue();
-      var hit = null;
-      var b = this;
-
-      // Récupérer la couleur personnalisée
-      var selectedCustomColor = "";
-
-      if (curC === "autre") {
-        selectedCustomColor = $("customColor").value.trim();
-
-        if (!selectedCustomColor) {
-          $("customColor").focus();
-          $("customColor").setCustomValidity("Veuillez saisir la couleur souhaitée.");
-          $("customColor").reportValidity();
-          return;
-        }
-
-        $("customColor").setCustomValidity("");
-      }
-
-      // Vérifier si le même article existe déjà dans le panier
-      cart.forEach(function (it) {
-        if (
-          it.pid === curP &&
-          it.cid === curC &&
-          it.size === size &&
-          it.customColor === selectedCustomColor
-        ) {
-          hit = it;
-        }
-      });
-
-      // Ajouter ou augmenter la quantité
-      if (hit) {
-        hit.qty = Math.min(50, hit.qty + qty);
-      } else {
-        cart.push({
-          pid: curP,
-          cid: curC,
-          size: size,
-          qty: qty,
-          customColor: selectedCustomColor
-        });
-      }
-
-      renderCart();
-      update();
-
-      b.textContent = "Ajouté";
-
-      setTimeout(function () {
-        b.textContent = "Ajouter à ma commande";
-      }, 1400);
+    var p = prod(curP), size = p.tailles ? $("size").value : "", qty = qtyValue(), hit = null, b = this;
+    var chosenCustomColor = curC === "autre" ? $("customColor").value.trim() : "";
+    if (curC === "autre" && !chosenCustomColor) {
+      $("customColor").focus();
+      $("customColor").setCustomValidity("Indique la couleur que tu souhaites.");
+      $("customColor").reportValidity();
+      return;
+    }
+    $("customColor").setCustomValidity("");
+    cart.forEach(function (it) {
+      if (it.pid === curP && it.cid === curC && it.size === size &&
+        (it.customColor || "") === chosenCustomColor) hit = it;
     });
+    if (hit) hit.qty = Math.min(50, hit.qty + qty);
+    else cart.push({ pid: curP, cid: curC, size: size, qty: qty, customColor: chosenCustomColor });
+    renderCart(); update();
+    b.textContent = "Ajouté";
+    setTimeout(function () { b.textContent = "Ajouter à ma commande"; }, 1400);
   });
   $("cart").addEventListener("click", function (e) {
     var b = e.target.closest("button[data-i]");
@@ -510,12 +457,14 @@ var PRODUITS = [
 
   function message() {
     if (!cart.length) return "";
-    var total = 0, lines = ["Bonjour SenegalNdiaye,", "je voudrais commander :"];
+    var totalArticles = 0, totalPrix = 0, lines = ["Bonjour SenegalNdiaye,", "je voudrais commander :"];
     cart.forEach(function (it) {
-      var l = label(it); total += it.qty;
-      lines.push("- " + it.qty + " × " + l.p.nom.toLowerCase() + " " + l.c.nom.toLowerCase() + (it.size ? ", taille " + it.size : ""));
+      var l = label(it); totalArticles += it.qty; totalPrix += it.qty * l.p.prix;
+      lines.push("- " + it.qty + " × " + l.p.nom + " — " + l.p.prix.toLocaleString("fr-FR") + " FCFA/unité — " + (it.qty * l.p.prix).toLocaleString("fr-FR") + " FCFA" + " (" + l.c.nom.toLowerCase() + (it.size ? ", taille " + it.size : "") + ")");
+      if (it.cid === "autre") lines.push("  (Couleur personnalisée demandée, à confirmer selon disponibilité)");
     });
-    lines.push("Total : " + total + " article" + (total > 1 ? "s" : ""));
+    lines.push("Nombre d’articles : " + totalArticles);
+    lines.push("TOTAL À PAYER : " + totalPrix.toLocaleString("fr-FR") + " FCFA");
     var name = $("name").value.trim(), city = $("city").value.trim();
     if (name) lines.push("Mon prénom : " + name);
     if (city) lines.push("Ville : " + city);
